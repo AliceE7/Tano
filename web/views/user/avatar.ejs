@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+    <% if (user.id && ID) { %>
+      <% if (user.id === ID) { %>
+        <img src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%=user.avatar%>.png"
+          style="margin-right:1000%">
+        <% } else { %>
+          <h1>User id does not match the current logged in user id</h1>
+          <% } %>
+    <%  } else { %>
+      <h1>No User Found</h1>
+      <% } %>
+  </body>
+</html>

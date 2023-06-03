@@ -1,0 +1,43 @@
+const { AttachmentBuilder } = require("discord.js");
+const axios = require("axios");
+module.exports = {
+  DATA: {
+    name: "triggered",
+    aliases: [],
+    category: "IMAGES",
+  },
+
+  INFO: {
+    description: ``,
+    usage: `triggered <user> `,
+    examples: [``],
+  },
+
+  SETTINGS: {
+    ownerOnly: false,
+    commandBroken: false,
+  },
+  run: async (client, message, args) => {
+    const user =
+      message.mentions.users.first() ||
+      message.guild.members.cache.get(args[0]);
+
+    if (!user) return;
+
+    const member = message.guild.members.cache.get(user.id);
+
+    if (!member) return;
+
+    const res = await axios({
+      method: "get",
+      url: `https://some-random-api.com/canvas/overlay/triggered?avatar=${member.user.displayAvatarURL(
+        { extension: "png" }
+      )}`,
+      responseType: "stream",
+    });
+
+    const image = new AttachmentBuilder(res.data, { name: "triggerd_SRA.png" });
+
+    message.channel.send({ files: [image] });
+  },
+};
