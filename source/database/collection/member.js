@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const memberSchema = mongoose.Schema({
-  id: String, 
+  id: String,
   messages_sent: { type: Number, default: "0" },
-  
-})
+});
 
-module.exports = new mongoose.model('member', memberSchema)
+module.exports = new mongoose.model("member", memberSchema);

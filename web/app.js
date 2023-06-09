@@ -82,7 +82,7 @@ module.exports = async (client) => {
   );
 
   app.get("/", (req, res) => {
-    res.render("home-page/index.ejs", {
+    res.render("pages/index.ejs", {
       bot: client,
       user: req.isAuthenticated ? req.user : null,
     });
@@ -95,18 +95,7 @@ module.exports = async (client) => {
     });
   });
 
-  // --- user
-  app.get("/user/properties/avatar/:ID", (req, res) => {
-    const user = req.isAuthenticated ? req.user : null;
-    const ID = req.params.ID;
-
-    res.render("user/avatar.ejs", {
-      bot: client,
-      user: user,
-      ID: ID,
-    });
-  });
-
+  
   // --- extra
   app.get("/redirect", (req, res) => {
     const URL = req.query.url;
@@ -117,8 +106,21 @@ module.exports = async (client) => {
     }
   });
 
+  app.get('/support', (req, res) => {
+    const type = req.query.type;
+    if (type) {
+      if (type === "discord") {
+              res.redirect('https://discord.gg/tano')
+      } else if (type === "web") {
+        res.redirect('/websupport')
+      }
+    } else {
+            res.redirect('https://discord.gg/tano')
+    }
+  })
+
   app.get("*", function (req, res) {
-    res.render("404.ejs", {
+    res.render("errors/404.ejs", {
       user: req.isAuthenticated ? req.user : null,
       bot: client,
     });

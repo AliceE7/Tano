@@ -3,12 +3,13 @@ const {
   GatewayIntentBits,
   Collection,
   Partials,
-  AllowedMentionsTypes
+  AllowedMentionsTypes,
 } = require("discord.js");
 const mongoose = require("mongoose");
 const ansi = require("ansi-colors");
 const fs = require("node:fs");
 const system = require("systeminformation");
+const path = require("path");
 
 ansi.theme({
   error: ansi.bold.red,
@@ -26,13 +27,20 @@ const client = new Client({
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildVoiceStates,
   ],
-  partials: [Partials.Channel, Partials.Message, Partials.User, Partials.GuildMember, Partials.Reaction],
+  partials: [
+    Partials.Channel,
+    Partials.Message,
+    Partials.User,
+    Partials.GuildMember,
+    Partials.Reaction,
+  ],
   allowedMention: [AllowedMentionsTypes.User, AllowedMentionsTypes.Role],
-  closeTimeout: "3_000"
+  closeTimeout: "3_000",
 });
 
 client.commands = new Collection();
 client.aliases = new Collection();
+client.category = fs.readdirSync(path.join(__dirname, "/commands/"));
 client.colors = ansi;
 client.system = system;
 client.embed = {
@@ -44,6 +52,7 @@ client.embed = {
     footer: "Tano Development R",
   },
 };
+require('./handlers/functions.js')(client)
 
 ["event", "command"].forEach((file) => {
   require(`./handlers/${file}.js`)(client);
@@ -63,22 +72,5 @@ mongoose
 
 client.handleEvents();
 client.handleCommands();
-
-process
-  .on("uncaughtException", (err, orgin) => {
-    fs.writeFile(
-      "./err/uncaughtException.txt",
-      `\nerror: ${err}\norgin: ${orgin}\nAt: ${Date.now()}\n`,
-      (err) => console.log(err)
-    );
-  })
-  .on("unhandledRejection", (reason, promise) => {
-    console.log("Unhandled Rejection at:", promise, "reason:", reason);
-  })
-  .on("warning", (warning) => {
-    console.warn(warning.name);
-    console.warn(warning.message);
-    console.warn(warning.stack);
-  });
 
 client.login(process.env.TOKEN);

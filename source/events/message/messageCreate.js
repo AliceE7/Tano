@@ -1,7 +1,7 @@
 const cooldown = new Set();
 const clientDB = require("../../database/collection/client.js");
-const guildDB = require('../../database/collection/guild.js');
-const memberDB = require('../../database/collection/member.js');
+const guildDB = require("../../database/collection/guild.js");
+const memberDB = require("../../database/collection/member.js");
 const ms = require("ms");
 const {
   PermissionsBitField: { Flags },
@@ -22,13 +22,12 @@ module.exports = async (client, message) => {
     }
   }
 
-
   /*let memberData = await memberDB.findOne({ id: message.user.id })
   if (!memberData) nemberData = await new memberDB({ id: message.user.id }); 
   memberData.$inc(`messages_sent`, 1)
   memberData.save()
   */
-  
+
   let data = await guildDB.findOne({ id: message.guild.id });
   if (!data) data = await new guildDB({ id: message.guild.id }).save();
   const prefix = data.prefix;
