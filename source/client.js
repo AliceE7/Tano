@@ -4,6 +4,7 @@ const {
   Collection,
   Partials,
   AllowedMentionsTypes,
+  WebhookClient,
 } = require("discord.js");
 const mongoose = require("mongoose");
 const ansi = require("ansi-colors");
@@ -12,7 +13,6 @@ const system = require("systeminformation");
 const path = require("path");
 
 ansi.theme({
-  error: ansi.bold.red,
   warn: ansi.bold.redBright,
   ok: ansi.italic.bold.green,
   afterOk: ansi.underline.bold.blue,
@@ -38,6 +38,10 @@ const client = new Client({
   closeTimeout: "3_000",
 });
 
+const logger = new WebhookClient({
+  url: process.env.WEBHOOK_d58c2d594694f53a2d72c855d35e5fb,
+});
+
 client.commands = new Collection();
 client.aliases = new Collection();
 client.category = fs.readdirSync(path.join(__dirname, "/commands/"));
@@ -47,12 +51,14 @@ client.embed = {
   colors: {
     grey: "2c2c2b",
     green: "9fffa6",
+    red: "ff5b5b",
   },
   texts: {
     footer: "Tano Development R",
   },
 };
-require('./handlers/functions.js')(client)
+client.logger = logger;
+require("./handlers/functions.js")(client);
 
 ["event", "command"].forEach((file) => {
   require(`./handlers/${file}.js`)(client);

@@ -1,4 +1,4 @@
-const { ShardingManager, ShardEvents } = require("discord.js");
+const { ShardingManager } = require("discord.js");
 const ansi = require("ansi-colors");
 const fs = require("fs");
 
@@ -12,12 +12,11 @@ manager.on("shardCreate", (shard) => {
   console.log(
     ansi.bold.red(`[SHARD]`) + ansi.italic.yellow(` ${shard.id} launched`)
   );
-});
+}); 
 
 manager.spawn();
-
 process.on("uncaughtException", (err, orgin) => {
-  console.log(err, orgin)
+  console.log(err);
 });
 
 process.on("unhandledRejection", (reason, promise) => {

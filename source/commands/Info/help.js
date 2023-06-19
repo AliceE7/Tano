@@ -38,21 +38,21 @@ async function all_commands(client, message) {
       new ButtonBuilder()
         .setCustomId("info")
         .setStyle(ButtonStyle.Secondary)
-        .setEmoji("1115613724082962565")
+        .setEmoji("ℹ️")
         .setLabel("Information")
     )
     .addComponents(
       new ButtonBuilder()
         .setCustomId("utility")
         .setStyle(ButtonStyle.Secondary)
-        .setEmoji("1115615101991522374")
+        .setEmoji("🛠️")
         .setLabel("Utility")
     )
     .addComponents(
       new ButtonBuilder()
         .setCustomId("image")
         .setStyle(ButtonStyle.Secondary)
-        .setEmoji("1115615797662986301")
+        .setEmoji("📷")
         .setLabel("Image")
     );
 
@@ -61,15 +61,15 @@ async function all_commands(client, message) {
     .setTitle(`${client.user.username} Commands list`)
     .addFields(
       {
-        name: "<:Discord_info_white_theme:1115613724082962565> ✦ Information",
+        name: "ℹ️ ✦ Information",
         value: `\`Click The Information Button\``,
       },
       {
-        name: "<:Discord_Settings:1115615101991522374> ✦ Utility",
+        name: "🛠 ✦ Utility",
         value: `\`Click The Utility Button\``,
       },
       {
-        name: "<:camera:1115615797662986301> ✦ Images",
+        name: "📷 ✦ Images",
         value: `\`Click The Images Button\``,
       }
     )
@@ -151,6 +151,5 @@ function one_command(client, message, args) {
         }
       }
     }
-  } else {
   }
 }

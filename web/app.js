@@ -95,7 +95,6 @@ module.exports = async (client) => {
     });
   });
 
-  
   // --- extra
   app.get("/redirect", (req, res) => {
     const URL = req.query.url;
@@ -106,18 +105,18 @@ module.exports = async (client) => {
     }
   });
 
-  app.get('/support', (req, res) => {
+  app.get("/support", (req, res) => {
     const type = req.query.type;
     if (type) {
       if (type === "discord") {
-              res.redirect('https://discord.gg/tano')
+        res.redirect("https://discord.gg/tano");
       } else if (type === "web") {
-        res.redirect('/websupport')
+        res.redirect("/websupport");
       }
     } else {
-            res.redirect('https://discord.gg/tano')
+      res.redirect("https://discord.gg/tano");
     }
-  })
+  });
 
   app.get("*", function (req, res) {
     res.render("errors/404.ejs", {

@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
+const { codeBlock } = require('@discordjs/formatters')
 module.exports = {
   DATA: {
     name: "eval",
@@ -17,21 +18,29 @@ module.exports = {
     commandBroken: false,
   },
   run: async (client, message, args) => {
-    const arg = args.slice(0).join(" ");
-    if (!arg) return;
-
     try {
-      if (arg === "client") return;
+      const arg = args.slice(0).join(" ");
+      if (!arg) return;
+      if (args[0] === "client") return;
 
       const evaled = eval(arg);
+      const raw = evaled;
       const cleaned = await clean(evaled);
 
-      message.channel.send(`\`\`\`js\n${cleaned}\n\`\`\``);
-    } catch (err) {
-      console.log(err);
-      message.channel
-        .send(`\`\`\`xl\n${err}\`\`\``)
-        .catch(message.channel.send);
+      const embed = new EmbedBuilder()
+      .setDescription(codeBlock("js", cleaned))
+      .setColor(client.embed.colors.green)
+
+      const rawEmbed = new EmbedBuilder()
+      .setDescription(codeBlock("js", raw))
+      .setColor(client.embed.colors.green)
+
+      message.channel.send({ embeds: [embed] }).catch(console.error);
+      message.channel.send({ embeds: [rawEmbed] }).catch(console.error);
+      
+    } catch (e) {
+      console.log(e);
+      message.channel.send(codeBlock('json', e))
     }
   },
 };

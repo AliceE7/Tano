@@ -7,7 +7,7 @@ module.exports = {
   },
 
   INFO: {
-    description: ``,
+    description: `Shows various statistics about the bot, including server count, and system info.`,
     usage: ``,
     examples: [``],
   },

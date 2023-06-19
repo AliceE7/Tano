@@ -22,11 +22,10 @@ module.exports = async (client, message) => {
     }
   }
 
-  /*let memberData = await memberDB.findOne({ id: message.user.id })
+  /* let memberData = await memberDB.findOne({ id: message.user.id })
   if (!memberData) nemberData = await new memberDB({ id: message.user.id }); 
   memberData.$inc(`messages_sent`, 1)
-  memberData.save()
-  */
+  memberData.save()*/
 
   let data = await guildDB.findOne({ id: message.guild.id });
   if (!data) data = await new guildDB({ id: message.guild.id }).save();

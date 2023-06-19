@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="200" viewBox="0 0 600 200">
+  <defs>
+    <clipPath id="clip-logo">
+      <rect width="600" height="200"/>
+    </clipPath>
+  </defs>
+  <g id="logo" clip-path="url(#clip-logo)">
+    <g id="Group_1" data-name="Group 1">
+      <text id="Sole-Token" transform="translate(4 145)" fill="#deb887" font-size="120" font-family="Ubuntu-Regular, Ubuntu"><tspan x="0" y="0">Sole</tspan><tspan y="0" fill="#707070">-Token</tspan></text>
+    </g>
+    <path id="Path_1" data-name="Path 1" d="M242.1,104.382h29.148V112.7l-28.978-8.314" transform="translate(-0.498 -0.058)" fill="#deb887" stroke="#deb887" stroke-width="1"/>
+  </g>
+</svg>
