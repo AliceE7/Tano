@@ -4,3 +4,16 @@
 
 # Replit Nix config file
 replit.nix
+
+# node_modules
+node_modules
+
+# templates
+temp-commands.js
+
+# package files
+package-lock.json
+package.json
+
+# prettier
+.prettierignore

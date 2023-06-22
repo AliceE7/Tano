@@ -82,26 +82,36 @@ module.exports = async (client) => {
   );
 
   app.get("/", (req, res) => {
-    res.render("pages/index.ejs", {
+    res.status(200).render("pages/index.ejs", {
       bot: client,
       user: req.isAuthenticated ? req.user : null,
     });
   });
 
   app.get("/dashboard", (req, res) => {
-    res.render("dashboard/main.ejs", {
-      user: req.isAuthenricated ? req.user : null,
+    res.status(200).render("dashboard/main.ejs", {
+      user: req.isAuthenticated ? req.user : null,
       bot: client,
     });
+  });
+
+  // --- Important Stuff <3];
+
+  app.get("/p-p", (req, res) => {
+    res.status(200).render("pages/p-p.ejs");
+  });
+
+  app.get("/t-o-s", (req, res) => {
+    res.status(200).render("psages/tos.ejs");
   });
 
   // --- extra
   app.get("/redirect", (req, res) => {
     const URL = req.query.url;
     if (URL) {
-      res.redirect(URL);
+      res.status(200).redirect(URL);
     } else {
-      res.send("No URL or invalid url");
+      res.status(200).send("No URL or invalid url");
     }
   });
 
@@ -109,17 +119,17 @@ module.exports = async (client) => {
     const type = req.query.type;
     if (type) {
       if (type === "discord") {
-        res.redirect("https://discord.gg/tano");
+        res.status(200).redirect("https://discord.gg/tano");
       } else if (type === "web") {
-        res.redirect("/websupport");
+        res.status(200).redirect("/websupport");
       }
     } else {
-      res.redirect("https://discord.gg/tano");
+      res.status(200).redirect("https://discord.gg/tano");
     }
   });
 
   app.get("*", function (req, res) {
-    res.render("errors/404.ejs", {
+    res.status(200).render("errors/404.ejs", {
       user: req.isAuthenticated ? req.user : null,
       bot: client,
     });

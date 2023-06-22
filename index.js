@@ -12,7 +12,7 @@ manager.on("shardCreate", (shard) => {
   console.log(
     ansi.bold.red(`[SHARD]`) + ansi.italic.yellow(` ${shard.id} launched`)
   );
-}); 
+});
 
 manager.spawn();
 process.on("uncaughtException", (err, orgin) => {
@@ -20,7 +20,7 @@ process.on("uncaughtException", (err, orgin) => {
 });
 
 process.on("unhandledRejection", (reason, promise) => {
-  console.log(reason, promise)
+  console.log(reason, promise);
 });
 
 process.on("warning", (warning) => {

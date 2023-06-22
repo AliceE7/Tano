@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const { codeBlock } = require('@discordjs/formatters')
+const { codeBlock } = require("@discordjs/formatters");
 module.exports = {
   DATA: {
     name: "eval",
@@ -28,19 +28,18 @@ module.exports = {
       const cleaned = await clean(evaled);
 
       const embed = new EmbedBuilder()
-      .setDescription(codeBlock("js", cleaned))
-      .setColor(client.embed.colors.green)
+        .setDescription(codeBlock("js", cleaned))
+        .setColor(client.embed.colors.green);
 
       const rawEmbed = new EmbedBuilder()
-      .setDescription(codeBlock("js", raw))
-      .setColor(client.embed.colors.green)
+        .setDescription(codeBlock("js", raw))
+        .setColor(client.embed.colors.green);
 
       message.channel.send({ embeds: [embed] }).catch(console.error);
       message.channel.send({ embeds: [rawEmbed] }).catch(console.error);
-      
     } catch (e) {
       console.log(e);
-      message.channel.send(codeBlock('json', e))
+      message.channel.send(codeBlock("json", e));
     }
   },
 };

@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const { time, TimestampStyles } = require('@discordjs/formatters');
+const { time, TimestampStyles } = require("@discordjs/formatters");
 
 module.exports = {
   DATA: {
@@ -20,9 +20,11 @@ module.exports = {
   },
   run: async (client, message) => {
     const timestamp = Math.floor(Date.now() / 1000 - client.uptime / 1000);
-    
+
     const embed = new EmbedBuilder()
-      .setDescription(`**Uptime:** ${time(timestamp, TimestampStyles.RelativeTime)}`)
+      .setDescription(
+        `**Uptime:** ${time(timestamp, TimestampStyles.RelativeTime)}`
+      )
       .setFooter({ text: client.embed.texts.footer.replace("R", " ") })
       .setColor(client.embed.colors.grey);
 
