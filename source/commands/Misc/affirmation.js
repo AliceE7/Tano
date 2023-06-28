@@ -1,21 +1,21 @@
 const { EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 module.exports = {
-  DATA: {
+  data: {
     name: "affirmation",
     aliases: [],
     category: "MISC",
   },
 
-  INFO: {
+  info: {
     description: `Provides a positive affirmation from a specified category, such as self-confidence, motivation, or gratitude.`,
     usage: `affirmation []`,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     try {

@@ -6,6 +6,7 @@ const url = require("url");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const fs = require("fs");
+const axios = require("axios");
 
 module.exports = async (client) => {
   const app = express();
@@ -22,7 +23,7 @@ module.exports = async (client) => {
       {
         clientID: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
-        callbackURL: "https://cookiez.ml/callback",
+        callbackURL: `https://cookiez.ml/callback`,
         scope: ["identify", "guilds"],
       },
       (accessToken, refreshToken, profile, done) => {
@@ -81,10 +82,16 @@ module.exports = async (client) => {
     }
   );
 
-  app.get("/", (req, res) => {
-    res.status(200).render("pages/index.ejs", {
+  app.get("/", async (req, res) => {
+    const _data = await axios({
+      method: "GET",
+      url: "https://some-random-api.com/animal/cat",
+    });
+    const fact = _data.data.fact;
+    res.status(200).render("ejs/home.ejs", {
       bot: client,
       user: req.isAuthenticated ? req.user : null,
+      catfact: fact,
     });
   });
 
@@ -97,12 +104,8 @@ module.exports = async (client) => {
 
   // --- Important Stuff <3];
 
-  app.get("/p-p", (req, res) => {
-    res.status(200).render("pages/p-p.ejs");
-  });
-
-  app.get("/t-o-s", (req, res) => {
-    res.status(200).render("psages/tos.ejs");
+  app.get("/dict", (req, res) => {
+    res.render("ejs/commands/dict.ejs")
   });
 
   // --- extra
@@ -129,7 +132,7 @@ module.exports = async (client) => {
   });
 
   app.get("*", function (req, res) {
-    res.status(200).render("errors/404.ejs", {
+    res.status(404).render("ejs/*.ejs", {
       user: req.isAuthenticated ? req.user : null,
       bot: client,
     });

@@ -39,18 +39,9 @@ module.exports = async (client, message) => {
   if (!command) command = client.commands.get(client.aliases.get(cmd));
   if (!command) return;
 
-  if (command.SETTINGS.commandBroken) {
-    const embed = new EmbedBuilder()
-      .setColor("#f0fa37")
-      .setDescription(
-        `🐞 Looks like there is an error with this command, this has been reported to developers! 🍌`
-      );
-    message.channel.send({ embeds: [embed] });
-    return;
-  }
-
-  if (command.SETTINGS.ownerOnly) {
-    if (!message.author.id === "940282986853728338") return;
+  if (command.access.developersOnly) {
+    const IDs = ["940282986853728338"];
+    if (!message.author.id.includes(IDs)) return;
   }
 
   command.run(client, message, args).then(async () => {

@@ -1,0 +1,35 @@
+<head>
+  <%- include("../partials/tags.ejs") -%>
+</head>
+
+<body class="p-3 mb-2 bg-dark text-white">
+  <!-- Navbar -->
+  
+  <%- include("../partials/navbar") -%>
+
+    <!-- Body -->
+    
+    <div class="d-flex justify-content-center head">
+      <img src="images/12.jpeg" style="border-radius:70%;">
+    </div>
+    
+    <div class="d-flex justify-content-center subtext"> 
+      <br><br><br><br><br><br><br><br>
+      
+      <p 
+        class="mx-auto" 
+        style="font-size:40px;font-family:monospace;letter-spacing:2px">
+        <%= bot.user.username %>
+          <br>
+         &nbsp&nbsp404
+      </p>
+    </div>
+    
+    <script>
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', window.location.href, false);
+      xhr.send(null);
+      console.log(xhr);
+      document.title = `${window.location.pathname} | ${xhr.status}`
+    </script>
+</body>

@@ -2,21 +2,21 @@ const { EmbedBuilder } = require("discord.js");
 const data = require("../../database/collection/client.js");
 
 module.exports = {
-  DATA: {
+  data: {
     name: "info",
     aliases: ["bot-info"],
     category: "BOT",
   },
 
-  INFO: {
+  info: {
     description: ``,
     usage: ``,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     const clientData = await data.findOne({ id: client.user.id });

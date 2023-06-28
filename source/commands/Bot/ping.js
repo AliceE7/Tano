@@ -1,20 +1,20 @@
 const { EmbedBuilder } = require("discord.js");
 module.exports = {
-  DATA: {
+  data: {
     name: "ping",
     aliases: [],
     category: "BOT",
   },
 
-  INFO: {
+  info: {
     description: `Check the bot's response time.`,
     usage: `ping`,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message) => {
     const embed = new EmbedBuilder()

@@ -1,20 +1,20 @@
 const { EmbedBuilder } = require("discord.js");
 module.exports = {
-  DATA: {
+  data: {
     name: "avatar",
     aliases: ["av", "pfp"],
     category: "UTILS",
   },
 
-  INFO: {
+  info: {
     description: ``,
     usage: ``,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     let user =

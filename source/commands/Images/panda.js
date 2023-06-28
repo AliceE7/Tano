@@ -1,21 +1,21 @@
 const { EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 module.exports = {
-  DATA: {
+  data: {
     name: "panda",
     aliases: [],
     category: "IMAGES",
   },
 
-  INFO: {
+  info: {
     description: `Generates a random image of a panda`,
     usage: ``,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message) => {
     const res = await axios({

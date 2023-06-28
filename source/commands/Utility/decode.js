@@ -1,20 +1,20 @@
 const { EmbedBuilder } = require("discord.js");
 module.exports = {
-  DATA: {
+  data: {
     name: "decode",
     aliases: [],
     category: "UTILS",
   },
 
-  INFO: {
+  info: {
     description: `decode an encrypted message`,
     usage: `decode [message]`,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     try {

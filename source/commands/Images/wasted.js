@@ -1,21 +1,21 @@
 const { AttachmentBuilder } = require("discord.js");
 const axios = require("axios");
 module.exports = {
-  DATA: {
+  data: {
     name: "wasted",
     aliases: [],
     category: "IMAGES",
   },
 
-  INFO: {
+  info: {
     description: ``,
     usage: `wasted <user>`,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     if (!args[0]) return;

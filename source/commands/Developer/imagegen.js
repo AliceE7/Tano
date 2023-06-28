@@ -1,9 +1,10 @@
 const { EmbedBuilder } = require("discord.js");
+
 module.exports = {
   data: {
-    name: "",
-    aliases: [],
-    category: "",
+    name: "imagegen",
+    aliases: ["ig"],
+    category: "DEV",
   },
 
   info: {
@@ -13,7 +14,7 @@ module.exports = {
   },
 
   access: {
-    developersOnly: false,
+    developersOnly: true,
     public: true,
   },
   run: async (client, message, args) => {},

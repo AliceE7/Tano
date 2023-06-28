@@ -13,6 +13,8 @@ temp-commands.js
 
 # package files
 package-lock.json
+
+#package
 package.json
 
 # prettier

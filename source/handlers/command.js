@@ -9,15 +9,15 @@ module.exports = async (client) => {
           .filter((file) => file.endsWith(".js"));
         for (const file of data) {
           const pull = require(`../../source/commands/${dir}/${file}`);
-          if (pull.DATA.name) {
-            client.commands.set(pull.DATA.name, pull);
+          if (pull.data.name) {
+            client.commands.set(pull.data.name, pull);
           } else {
             console.warn(`Error: -> file <pull.name> missing name`);
             continue;
           }
-          if (pull.DATA.aliases && Array.isArray(pull.DATA.aliases)) {
-            pull.DATA.aliases.forEach((a) =>
-              client.aliases.set(a, pull.DATA.name)
+          if (pull.data.aliases && Array.isArray(pull.data.aliases)) {
+            pull.data.aliases.forEach((a) =>
+              client.aliases.set(a, pull.data.name)
             );
           }
         }

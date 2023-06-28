@@ -2,21 +2,21 @@ const { EmbedBuilder } = require("discord.js");
 const { time, TimestampStyles } = require("@discordjs/formatters");
 
 module.exports = {
-  DATA: {
+  data: {
     name: "uptime",
     aliases: [],
     category: "BOT",
   },
 
-  INFO: {
+  info: {
     description: `Return's the bots uptime`,
     usage: `uptime`,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message) => {
     const timestamp = Math.floor(Date.now() / 1000 - client.uptime / 1000);

@@ -1,21 +1,21 @@
 const { EmbedBuilder, AttachmentBuilder } = require("discord.js");
 const axios = require("axios");
 module.exports = {
-  DATA: {
+  data: {
     name: "https-cat",
     aliases: ["httpscat", "hcc"],
     category: "IMAGES",
   },
 
-  INFO: {
+  info: {
     description: ``,
     usage: ``,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     try {

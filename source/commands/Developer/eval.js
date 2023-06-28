@@ -1,21 +1,21 @@
 const { EmbedBuilder } = require("discord.js");
 const { codeBlock } = require("@discordjs/formatters");
 module.exports = {
-  DATA: {
+  data: {
     name: "eval",
     aliases: [],
     category: "DEV",
   },
 
-  INFO: {
+  info: {
     description: ``,
     usage: ``,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: true,
-    commandBroken: false,
+  access: {
+    developersOnly: true,
+    public: false,
   },
   run: async (client, message, args) => {
     try {

@@ -1,20 +1,20 @@
 const { EmbedBuilder } = require("discord.js");
 module.exports = {
-  DATA: {
+  data: {
     name: "statistics",
     aliases: ["stats", "bot-stats"],
     category: "BOT",
   },
 
-  INFO: {
+  info: {
     description: `Shows various statistics about the bot, including server count, and system info.`,
     usage: ``,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     const embed = new EmbedBuilder();

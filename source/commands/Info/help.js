@@ -5,21 +5,21 @@ const {
   ActionRowBuilder,
 } = require("discord.js");
 module.exports = {
-  DATA: {
+  data: {
     name: "help",
     aliases: [],
     category: "INFO",
   },
 
-  INFO: {
+  info: {
     description: `Displays a list of available commands or detailed information for a specific command.`,
     usage: `help [command]`,
     examples: [`help`, "help ping"],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     if (!args[0]) {
@@ -31,7 +31,7 @@ module.exports = {
 };
 
 async function all_commands(client, message) {
-  const commands = client.commands.map((cmd) => `${cmd.DATA.name}`).join(", ");
+  const commands = client.commands.map((cmd) => `${cmd.data.name}`).join(", ");
 
   const buttons = new ActionRowBuilder()
     .addComponents(
@@ -80,9 +80,7 @@ async function all_commands(client, message) {
     components: [buttons],
   });
 
-  const collector = message.channel.createMessageComponentCollector({
-    time: 120000,
-  });
+  const collector = message.channel.createMessageComponentCollector();
 
   collector.on("collect", async (i) => {
     await i.deferUpdate();
@@ -114,8 +112,8 @@ async function all_commands(client, message) {
 
 function cmds(client, i) {
   const cmds = client.commands
-    .filter((cmd) => cmd.DATA.category === i)
-    .map((cmd) => `${cmd.DATA.name}`)
+    .filter((cmd) => cmd.data.category === i)
+    .map((cmd) => `${cmd.data.name}`)
     .join(", ");
   const embed = new EmbedBuilder()
     .setDescription(cmds)
@@ -129,20 +127,20 @@ function one_command(client, message, args) {
   const embed = new EmbedBuilder();
 
   if (command) {
-    if (command.DATA.name) {
-      embed.addFields({ name: "Name:", value: command.DATA.name });
-      if (command.DATA.aliases) {
-        const s = command.DATA.aliases.map((m) => m).join(", ");
+    if (command.data.name) {
+      embed.addFields({ name: "Name:", value: command.data.name });
+      if (command.data.aliases) {
+        const s = command.data.aliases.map((m) => m).join(", ");
         embed.addFields({ name: "Aliases:", value: s || "N/A" });
-        if (command.INFO.description) {
+        if (command.info.description) {
           embed.addFields({
             name: "Description:",
-            value: command.INFO.description || "N/A",
+            value: command.info.description || "N/A",
           });
-          if (command.INFO.usage) {
+          if (command.info.usage) {
             embed.addFields({
               name: "Usage:",
-              value: command.INFO.usage || "N/A",
+              value: command.info.usage || "N/A",
             });
 
             embed.setColor("Red");

@@ -1,21 +1,21 @@
 const { EmbedBuilder } = require("discord.js");
 const axios = require("axios");
 module.exports = {
-  DATA: {
+  data: {
     name: "advice",
     aliases: [],
     category: "MISC",
   },
 
-  INFO: {
+  info: {
     description: `Provides advice from a specified category.`,
     usage: `advice []`,
     examples: [``],
   },
 
-  SETTINGS: {
-    ownerOnly: false,
-    commandBroken: false,
+  access: {
+    developersOnly: false,
+    public: true,
   },
   run: async (client, message, args) => {
     try {

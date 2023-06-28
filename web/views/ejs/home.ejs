@@ -1,0 +1,23 @@
+<head>
+  <%- include("../partials/tags.ejs") -%>
+</head>
+
+<body class="p-3 mb-2 bg-dark text-white">
+  <!-- Navbar -->
+  
+  <%- include("../partials/navbar") -%>
+
+    <!-- Body -->
+    <div class="d-flex justify-content-center head">
+      <h1>
+        <img 
+            src="images/wonder-cat-n.jpeg"
+            style="width:100px;border-radius:50%"> 
+        <br>
+        <span style="color:#5663f7;font-size:30px;"><%= bot.user.username %></span>
+      </h1>
+    </div>
+    <div class="d-flex justify-content-center subtext">
+      <p style="font-style: italic;font-size: 30px;">Fact: <%= catfact %></p>
+    </div>
+</body>
